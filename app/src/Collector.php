@@ -4,10 +4,12 @@ namespace App;
 
 use eru123\orm\ORM;
 use Throwable;
+use DateTime;
 
 class Collector
 {
     static $ffseek = [];
+    static $npm_log_count = 0;
 
     public static function tail($file)
     {
@@ -115,16 +117,24 @@ class Collector
     public static function nginx_proxy_manager_init()
     {
         $date = date('Y-m-d H:i:s');
-        echo "[NPM][{$date}] Initializing...\n";
+        echo "[Npm][{$date}] Initializing...\n";
         $logs = static::nginx_proxy_manager_access_logs();
+        echo "[Npm][{$date}] Seeking end of " . count($logs) . " files...\n";
         foreach ($logs as $lfile) {
-            echo "[NPM][{$date}] Seeking end of file: {$lfile}\n";
             static::seek_end_tail($lfile);
         }
     }
 
     public static function nginx_proxy_manager()
     {
+        $date = new DateTime();
+        $last_log_count = static::$npm_log_count;
+        static::$npm_log_count = 0;
+
+        if (Crontab::match('@hourly', $date)) {
+            echo "[Npm][" . $date->format('Y-m-d H:i:s') . "] Collected {$last_log_count} npm logs in the last hour.\n";
+        }
+
         $rgx = [
             'proxy' => '/^\[(?<time_local>.*)\] (?<upstream_cache_status>.*) (?<upstream_status>.*) (?<status>.*) - (?<request_method>.*) (?<scheme>.*) (?<host>.*) "(?<request_uri>.*)" \[Client (?<remote_addr>.*)\] \[Length (?<body_bytes_sent>.*)\] \[Gzip (?<gzip_ratio>.*)\] \[Sent-to (?<server>.*)\] "(?<http_user_agent>.*)" "(?<http_referer>.*)"$/',
             'standard' => '/^\[(?<time_local>.*)\] (?<status>.*) - (?<request_method>.*) (?<scheme>.*) (?<host>.*) "(?<request_uri>.*)" \[Client (?<remote_addr>.*)\] \[Length (?<body_bytes_sent>.*)\] \[Gzip (?<gzip_ratio>.*)\] "(?<http_user_agent>.*)" "(?<http_referer>.*)"$/'
@@ -169,13 +179,12 @@ class Collector
                 $orm = ORM::insert('nginx_proxy_manager', $d);
                 $orm->exec();
                 if ($orm->lastError()) {
-                    echo "[NPM] Error: ";
+                    echo "[Npm] Error: ";
                     print_r($orm->lastError());
                 }
             }
 
-            $date = date('Y-m-d H:i:s');
-            echo "[NPM][{$date}] Collected " . count($data) . " npm logs.\n";
+            static::$npm_log_count += count($data);
         }
     }
 }
