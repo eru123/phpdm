@@ -6,7 +6,7 @@ use App\Daemon;
 use App\Migration;
 
 $date = date('Y-m-d H:i:s');
-echo "[NPM][{$date}] Starting...\n";
+echo "[Npm][{$date}] Starting...\n";
 
 try {
     Migration::run(
@@ -20,8 +20,8 @@ try {
     Daemon::run();
 } catch (Throwable $e) {
     $date = date('Y-m-d H:i:s');
-    echo "[NPM][{$date}] Error: {$e->getMessage()}\n";
-    echo "[NPM][{$date}] {$e->getTraceAsString()}\n";
+    echo "[Npm][{$date}] Error: {$e->getMessage()}\n";
+    echo "[Npm][{$date}] {$e->getTraceAsString()}\n";
 }
 
-echo "[NPM][{$date}] Exiting...\n";
+echo "[Npm][{$date}] Exiting...\n";
