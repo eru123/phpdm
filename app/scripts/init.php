@@ -6,7 +6,7 @@ use App\Daemon;
 use App\Migration;
 
 $date = date('Y-m-d H:i:s');
-echo "[INIT][{$date}] Starting...\n";
+echo "[App][{$date}] Setup starting...\n";
 
 try {
     Migration::run(
@@ -15,8 +15,8 @@ try {
     );
 } catch (Throwable $e) {
     $date = date('Y-m-d H:i:s');
-    echo "[INIT][{$date}] Error: {$e->getMessage()}\n";
-    echo "[INIT][{$date}] {$e->getTraceAsString()}\n";
+    echo "[App][{$date}] Error: {$e->getMessage()}\n";
+    echo "[App][{$date}] {$e->getTraceAsString()}\n";
 }
 
-echo "[INIT][{$date}] Exiting...\n";
+echo "[App][{$date}] Setup ended\n";
