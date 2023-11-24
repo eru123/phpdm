@@ -6,14 +6,14 @@ use App\Daemon;
 use App\Crontab;
 
 $date = date('Y-m-d H:i:s');
-echo "[PHPDM][{$date}] Starting...\n";
+echo "[App][{$date}] Starting...\n";
 
 try {
     Daemon::create(
         function () {
             $dt = new DateTime();
-            if (Crontab::match('*/5 * * * *', $dt)) {
-                echo "[PHPDM][{$dt->format('Y-m-d H:i:s')}] 5 Minute time Check\n";
+            if (Crontab::match('@hourly', $dt)) {
+                echo "[App][{$dt->format('Y-m-d H:i:s')}] Hourly time Check\n";
             }
         }
     );
@@ -21,8 +21,8 @@ try {
     Daemon::run();
 } catch (Throwable $e) {
     $date = date('Y-m-d H:i:s');
-    echo "[PHPDM][{$date}] Error: {$e->getMessage()}\n";
-    echo "[PHPDM][{$date}] {$e->getTraceAsString()}\n";
+    echo "[App][{$date}] Error: {$e->getMessage()}\n";
+    echo "[App][{$date}] {$e->getTraceAsString()}\n";
 }
 
-echo "[PHPDM][{$date}] Exiting...\n";
+echo "[App][{$date}] Exiting...\n";
