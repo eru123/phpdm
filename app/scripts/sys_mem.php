@@ -6,7 +6,7 @@ use App\Daemon;
 use App\Migration;
 
 $date = date('Y-m-d H:i:s');
-echo "[MEM][{$date}] Starting...\n";
+echo "[Ram][{$date}] Starting...\n";
 
 try {
     Daemon::create(
@@ -16,8 +16,8 @@ try {
     Daemon::run();
 } catch (Throwable $e) {
     $date = date('Y-m-d H:i:s');
-    echo "[MEM][{$date}] Error: {$e->getMessage()}\n";
-    echo "[MEM][{$date}] {$e->getTraceAsString()}\n";
+    echo "[Ram][{$date}] Error: {$e->getMessage()}\n";
+    echo "[Ram][{$date}] {$e->getTraceAsString()}\n";
 }
 
-echo "[MEM][{$date}] Exiting...\n";
+echo "[Ram][{$date}] Exiting...\n";
