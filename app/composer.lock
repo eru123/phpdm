@@ -4,8 +4,86 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "996087921d5b59a91577ce735a3c21de",
-    "packages": [],
+    "content-hash": "725822f9c3117ec9beac2724a8e01402",
+    "packages": [
+        {
+            "name": "eru123/orm",
+            "version": "v2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eru123/php-orm.git",
+                "reference": "92cf92ca2b56152be3061b2e7ce6b0103e550137"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eru123/php-orm/zipball/92cf92ca2b56152be3061b2e7ce6b0103e550137",
+                "reference": "92cf92ca2b56152be3061b2e7ce6b0103e550137",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "eru123\\orm\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "eru123",
+                    "email": "jericho@skiddph.com"
+                }
+            ],
+            "description": "PHP Based ORM",
+            "support": {
+                "issues": "https://github.com/eru123/php-orm/issues",
+                "source": "https://github.com/eru123/php-orm/tree/v2.0.6"
+            },
+            "time": "2023-11-21T08:49:05+00:00"
+        },
+        {
+            "name": "eru123/venv",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eru123/php-venv.git",
+                "reference": "c25cd6fcb38129db2c34166afbb5d21e1cea6d14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eru123/php-venv/zipball/c25cd6fcb38129db2c34166afbb5d21e1cea6d14",
+                "reference": "c25cd6fcb38129db2c34166afbb5d21e1cea6d14",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/venv.php"
+                ],
+                "psr-4": {
+                    "eru123\\venv\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jericho Aquino",
+                    "email": "yeoligoakino@gmail.com"
+                }
+            ],
+            "description": "Load env files virtually",
+            "support": {
+                "issues": "https://github.com/eru123/php-venv/issues",
+                "source": "https://github.com/eru123/php-venv/tree/v1.0.7"
+            },
+            "time": "2023-11-19T02:29:33+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
@@ -14,5 +92,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.2.0"
 }

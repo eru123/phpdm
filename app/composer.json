@@ -8,6 +8,10 @@
             "App\\": "src/"
         }
     },
+    "require": {
+        "eru123/orm": "^2.0",
+        "eru123/venv": "^1.0"
+    },
     "authors": [
         {
             "name": "Jericho Aquino",
