@@ -141,7 +141,10 @@ class Collector
         ];
 
         $logs = static::nginx_proxy_manager_access_logs();
-        $data = [];
+        $data_count = 0;
+        $error_count = 0;
+        $first_error = null;
+        $last_error = null;
         foreach ($logs as $lfile) {
             foreach (self::tail($lfile) as $line) {
                 foreach ($rgx as $type => $regex) {
@@ -150,7 +153,7 @@ class Collector
                         continue;
                     }
 
-                    $data[] = [
+                    $data = [
                         'message' => $line,
                         'data' => [
                             'type' => $type,
@@ -166,25 +169,43 @@ class Collector
                             'size' => $matches['body_bytes_sent'],
                             'ratio' => $matches['gzip_ratio'],
                             'server' => $matches['server'] ?? null,
-                            'user_agent' => $matches['http_user_agent'],
+                            'user_agent' => $matches['http_user_agent'] == '-' ? null : $matches['http_user_agent'],
                             'referer' => $matches['http_referer']
                         ]
                     ];
+
+                    $orm = ORM::insert('nginx_proxy_manager', $data);
+                    $orm->exec(false);
+                    if ($orm->lastError()) {
+                        $error_count++;
+                        if (is_null($first_error)) {
+                            $first_error = $orm->lastError();
+                        } else {
+                            $last_error = $orm->lastError();
+                        }
+                    } else {
+                        $data_count++;
+                    }
                 }
             }
         }
 
-        if (is_array($data) && count($data) > 0) {
-            foreach ($data as $d) {
-                $orm = ORM::insert('nginx_proxy_manager', $d);
-                $orm->exec();
-                if ($orm->lastError()) {
-                    echo "[Npm] Error: ";
-                    print_r($orm->lastError());
-                }
-            }
-
-            static::$npm_log_count += count($data);
+        if ($first_error) {
+            echo "[Npm][{$date->format('Y-m-d H:i:s')}] Error: {$first_error}\n";
         }
+
+        if ($last_error) {
+            echo "[Npm][{$date->format('Y-m-d H:i:s')}] Error: {$last_error}\n";
+        }
+
+        if ($data_count > 0) {
+            echo "[Npm][{$date->format('Y-m-d H:i:s')}] Collected {$data_count} npm logs.\n";
+        }
+
+        if ($error_count > 0) {
+            echo "[Npm][{$date->format('Y-m-d H:i:s')}] Error: {$error_count} npm logs.\n";
+        }
+
+        static::$npm_log_count += $data_count;
     }
 }
