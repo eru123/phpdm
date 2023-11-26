@@ -60,7 +60,6 @@ class Migration
                     INDEX `nginx_proxy_manager_data_path_index` ((CAST((`data`->>"$.path") AS CHAR(255)))),
                     INDEX `nginx_proxy_manager_data_size_index` ((CAST((`data`->>"$.size") AS CHAR(50)))),
                     INDEX `nginx_proxy_manager_data_status_index` ((CAST((`data`->>"$.http_code") AS CHAR(50)))),
-                    INDEX `nginx_proxy_manager_data_user_agent_index` ((CAST((`data`->>"$.user_agent") AS CHAR(255)))),
                     INDEX `nginx_proxy_manager_data_referer_index` ((CAST((`data`->>"$.referer") AS CHAR(255)))),
                     PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
