@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "eru123/orm",
-            "version": "v2.0.6",
+            "version": "v2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eru123/php-orm.git",
-                "reference": "92cf92ca2b56152be3061b2e7ce6b0103e550137"
+                "reference": "70c03357087ad0966622426e2a96a4994781187b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eru123/php-orm/zipball/92cf92ca2b56152be3061b2e7ce6b0103e550137",
-                "reference": "92cf92ca2b56152be3061b2e7ce6b0103e550137",
+                "url": "https://api.github.com/repos/eru123/php-orm/zipball/70c03357087ad0966622426e2a96a4994781187b",
+                "reference": "70c03357087ad0966622426e2a96a4994781187b",
                 "shasum": ""
             },
             "type": "library",
@@ -39,9 +39,9 @@
             "description": "PHP Based ORM",
             "support": {
                 "issues": "https://github.com/eru123/php-orm/issues",
-                "source": "https://github.com/eru123/php-orm/tree/v2.0.6"
+                "source": "https://github.com/eru123/php-orm/tree/v2.0.7"
             },
-            "time": "2023-11-21T08:49:05+00:00"
+            "time": "2023-11-26T09:03:39+00:00"
         },
         {
             "name": "eru123/venv",
@@ -92,5 +92,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }
