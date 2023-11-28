@@ -44,7 +44,7 @@ class Migration
         $stmt = $orm->exec();
         $date = date('Y-m-d H:i:s');
         if (!$stmt || $stmt?->rowCount() == 0) {
-            echo "[Npm][$date] reating table nginx_proxy_manager...\n";
+            echo "[Npm][$date] Creating table nginx_proxy_manager...\n";
             $orm = ORM::raw(
                 <<<SQL
                 CREATE TABLE `nginx_proxy_manager` (
