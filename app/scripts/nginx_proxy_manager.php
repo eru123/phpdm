@@ -10,8 +10,10 @@ echo "[Npm][{$date}] Starting...\n";
 
 try {
     Migration::run(
-        'App\Collector::nginx_proxy_manager_init'
+        venv('NGINX_PROXY_MANAGER_FILE_SEEK') ? null : 'App\Collector::nginx_proxy_manager_init'
     );
+    
+    echo "[Npm][{$date}] Started\n";
 
     Daemon::create(
         'App\Collector::nginx_proxy_manager'
