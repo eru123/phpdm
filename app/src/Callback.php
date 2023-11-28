@@ -48,6 +48,6 @@ class Callback
             }
         }
 
-        throw new Exception('invalid callback');
+        return fn () => null;
     }
 }
