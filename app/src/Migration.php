@@ -42,30 +42,45 @@ class Migration
     {
         $orm = ORM::raw('SHOW TABLES LIKE ?;', ['nginx_proxy_manager']);
         $stmt = $orm->exec();
-
+        $date = date('Y-m-d H:i:s');
         if (!$stmt || $stmt?->rowCount() == 0) {
-            echo "Creating table nginx_proxy_manager...\n";
+            echo "[Npm][$date] reating table nginx_proxy_manager...\n";
             $orm = ORM::raw(
                 <<<SQL
                 CREATE TABLE `nginx_proxy_manager` (
                     `id` BIGINT NOT NULL AUTO_INCREMENT,
-                    `message` TEXT NOT NULL,
-                    `data` JSON NOT NULL,
-                    INDEX `nginx_proxy_manager_data_type_index` ((CAST((`data`->>"$.type") AS CHAR(50)))),
-                    INDEX `nginx_proxy_manager_data_timestamp_index` ((CAST((`data`->>"$.timestamp") AS DATETIME))),
-                    INDEX `nginx_proxy_manager_data_host_index` ((CAST((`data`->>"$.host") AS CHAR(255)))),
-                    INDEX `nginx_proxy_manager_data_ip_index` ((CAST((`data`->>"$.ip") AS CHAR(255)))),
-                    INDEX `nginx_proxy_manager_data_method_index` ((CAST((`data`->>"$.method") AS CHAR(50)))),
-                    INDEX `nginx_proxy_manager_data_protocol_index` ((CAST((`data`->>"$.protocol") AS CHAR(50)))),
-                    INDEX `nginx_proxy_manager_data_path_index` ((CAST((`data`->>"$.path") AS CHAR(255)))),
-                    INDEX `nginx_proxy_manager_data_size_index` ((CAST((`data`->>"$.size") AS CHAR(50)))),
-                    INDEX `nginx_proxy_manager_data_status_index` ((CAST((`data`->>"$.http_code") AS CHAR(50)))),
-                    INDEX `nginx_proxy_manager_data_referer_index` ((CAST((`data`->>"$.referer") AS CHAR(255)))),
+                    `message` TEXT DEFAULT NULL,
+                    `type` VARCHAR(50) DEFAULT NULL,
+                    `timestamp` DATETIME NOT NULL,
+                    `host` VARCHAR(255) NOT NULL,
+                    `ip` VARCHAR(255) DEFAULT NULL,
+                    `method` VARCHAR(50) DEFAULT NULL,
+                    `scheme` VARCHAR(50) DEFAULT NULL,
+                    `uri` VARCHAR(255) DEFAULT NULL,
+                    `size` BIGINT DEFAULT NULL,
+                    `ratio` VARCHAR(255) DEFAULT NULL,
+                    `server` VARCHAR(255) DEFAULT NULL,
+                    `upstream_cache_status` VARCHAR(50) DEFAULT NULL,
+                    `upstream_status` VARCHAR(50) DEFAULT NULL,
+                    `status` VARCHAR(50) DEFAULT NULL,
+                    `referer` VARCHAR(255) DEFAULT NULL,
+                    `user_agent` VARCHAR(255) DEFAULT NULL,
+                    INDEX `nginx_proxy_manager_type_index` (`type`),
+                    INDEX `nginx_proxy_manager_timestamp_index` (`timestamp`),
+                    INDEX `nginx_proxy_manager_host_index` (`host`),
+                    INDEX `nginx_proxy_manager_ip_index` (`ip`),
+                    INDEX `nginx_proxy_manager_method_index` (`method`),
+                    INDEX `nginx_proxy_manager_scheme_index` (`scheme`),
+                    INDEX `nginx_proxy_manager_uri_index` (`uri`),
+                    INDEX `nginx_proxy_manager_size_index` (`size`),
+                    INDEX `nginx_proxy_manager_status_index` (`status`),
+                    INDEX `nginx_proxy_manager_referer_index` (`referer`),
+                    INDEX `nginx_proxy_manager_user_agent_index` (`user_agent`),
                     PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
                 SQL
             );
-            
+
             $orm->exec();
 
             if ($orm->lastError()) {
@@ -74,7 +89,8 @@ class Migration
         }
     }
 
-    public static function run(...$migration) {
+    public static function run(...$migration)
+    {
         foreach ($migration as $m) {
             Callback::make($m)();
         }
