@@ -1,0 +1,24 @@
+<?php
+
+require __DIR__ . '/autoload.php';
+
+use Wyue\Commands\CLI;
+use Wyue\Database\{
+    MySqlMakeMigration,
+    MySqlMakeModel,
+    MySqlMigrate,
+    MySqlRollback
+};
+use App\Commands\{
+    NginxAccess
+};
+
+CLI::register([
+    MySqlMakeMigration::class,
+    MySqlMakeModel::class,
+    MySqlMigrate::class,
+    MySqlRollback::class,
+    NginxAccess::class
+]);
+
+CLI::listen();

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "725822f9c3117ec9beac2724a8e01402",
+    "content-hash": "0577f1b553deba2733a1bde17a7ac83c",
     "packages": [
         {
             "name": "eru123/orm",
@@ -82,15 +82,55 @@
                 "source": "https://github.com/eru123/php-venv/tree/v1.0.7"
             },
             "time": "2023-11-19T02:29:33+00:00"
+        },
+        {
+            "name": "eru123/wyue",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eru123/wyue.git",
+                "reference": "d82461b3d41e4ebceb58df19cad98a16f9f6e27f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eru123/wyue/zipball/d82461b3d41e4ebceb58df19cad98a16f9f6e27f",
+                "reference": "d82461b3d41e4ebceb58df19cad98a16f9f6e27f",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wyue\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "eru123",
+                    "email": "yeoligoakino@gmail.com"
+                }
+            ],
+            "description": "Framework for developing Vite.js application on top of PHP",
+            "support": {
+                "issues": "https://github.com/eru123/wyue/issues",
+                "source": "https://github.com/eru123/wyue/tree/main"
+            },
+            "time": "2024-10-07T23:29:57+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "eru123/wyue": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
