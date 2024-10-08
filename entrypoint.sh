@@ -8,11 +8,11 @@ if [ -z "$ROOTFS_PATH" ]; then
     ROOTFS_PATH=/app/rootfs
 fi
 
-php scripts/init.php
+php dm migrate -V
 chmod +x /app/scripts_sh/*.sh
 
 if [ -n "$NGINX_PROXY_MANAGER_DATA_PATH" ]; then
-    /app/scripts_sh/nginx_proxy_manager.sh &
+    /app/scripts_sh/nginx_access_logs.sh &
 fi
 
 if [ -f "$ROOTFS_PATH/proc/meminfo" ]; then
