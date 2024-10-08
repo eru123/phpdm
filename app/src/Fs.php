@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Wyue\Commands\CLI;
+
 final class Fs
 {
     static $tail = [];
@@ -77,7 +79,7 @@ final class Fs
         $last_modified = filemtime($path);
 
         if (!file_exists($path)) {
-            echo "File not found: $path" . PHP_EOL;
+            CLI::warning("File not found: ". $path);
         }
 
         if ($modified !== $last_modified) {

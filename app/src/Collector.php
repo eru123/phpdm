@@ -5,6 +5,7 @@ namespace App;
 use eru123\orm\ORM;
 use Throwable;
 use DateTime;
+use Wyue\MySql;
 
 class Collector
 {
@@ -88,7 +89,7 @@ class Collector
             'mem_cache_percent' => $mem_cache_percent
         ];
 
-        $orm = ORM::insert('sys_mem', $data);
+        $orm = MySql::insert('sys_mem', $data);
         $orm->exec();
         if ($orm->lastError()) {
             echo "[{$date}] Error: ";
@@ -172,7 +173,7 @@ class Collector
                         'referer' => $matches['http_referer'] == '-' ? null : $matches['http_referer']
                     ];
 
-                    $orm = ORM::insert('nginx_proxy_manager', $data);
+                    $orm = MySql::insert('nginx_proxy_manager', $data);
                     $orm->exec(false);
                     if ($orm->lastError()) {
                         $error_count++;

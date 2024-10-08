@@ -3,16 +3,17 @@
 namespace App;
 
 use eru123\orm\ORM;
+use Wyue\MySql;
 
 class Migration
 {
     public static function sys_mem()
     {
-        $orm = ORM::raw('SHOW TABLES LIKE ?;', ['sys_mem']);
+        $orm = MySql::raw('SHOW TABLES LIKE ?;', ['sys_mem']);
         $stmt = $orm->exec();
         if (!$stmt || $stmt?->rowCount() == 0) {
             echo "Creating table sys_mem...\n";
-            $orm = ORM::raw(
+            $orm = MySql::raw(
                 <<<SQL
                 CREATE TABLE `sys_mem` (
                     `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -40,12 +41,12 @@ class Migration
 
     public static function nginx_proxy_manager()
     {
-        $orm = ORM::raw('SHOW TABLES LIKE ?;', ['nginx_proxy_manager']);
+        $orm = MySql::raw('SHOW TABLES LIKE ?;', ['nginx_proxy_manager']);
         $stmt = $orm->exec();
         $date = date('Y-m-d H:i:s');
         if (!$stmt || $stmt?->rowCount() == 0) {
             echo "[Npm][$date] Creating table nginx_proxy_manager...\n";
-            $orm = ORM::raw(
+            $orm = MySql::raw(
                 <<<SQL
                 CREATE TABLE `nginx_proxy_manager` (
                     `id` BIGINT NOT NULL AUTO_INCREMENT,
