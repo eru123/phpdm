@@ -5,11 +5,12 @@ namespace App\Commands;
 use App\Daemon;
 use App\Crontab;
 use Wyue\Commands\AbstractCommand;
+use Wyue\Commands\CLI;
 
-class NginxAccess extends AbstractCommand
+class Entrypoint extends AbstractCommand
 {
     protected string $entry = 'run:entrypoint';
-    protected string $description = 'Run the application';
+    protected string $description = 'Run the application\'s entrypoint';
     protected array $flags = [
         'V|verbose' => 'Enable verbose mode',
     ];
@@ -21,7 +22,7 @@ class NginxAccess extends AbstractCommand
         try {
             Daemon::create(
                 function () {
-                    if (Crontab::match('@hourly', $dt)) {
+                    if (Crontab::match('@hourly', new \DateTime())) {
                         CLI::println("[App][" . date('Y-m-d H:i:s') . "] Hourly time Check");
                     }
                 }

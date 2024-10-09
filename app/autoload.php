@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Wyue\MySql;
 use Wyue\Venv;
+use Wyue\Commands\CLI;
 
 Venv::protect(true);
 Venv::load_env(__DIR__ . '/.env', false);
@@ -21,3 +22,11 @@ MySql::set_config([
     'models_path' => __DIR__ . '/src/Models',
     'models_namespace' => 'App\Models',
 ]);
+
+try {
+    MySql::pdo();
+} catch (\Throwable $e) {
+    CLI::error($e->getMessage());
+    CLI::error($e->getTraceAsString(), CLI::COLOR_RESET);
+    exit(1);
+}

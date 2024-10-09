@@ -1,22 +1,24 @@
 #!/bin/sh
 
+php /app/autoload.php
+if [ $? -eq 1 ]; then
+    exit 1
+fi
+
 if [ ! -f "/app/.env" ]; then
     printenv > /app/.env
 fi 
 
-if [ -z "$ROOTFS_PATH" ]; then
-    ROOTFS_PATH=/app/rootfs
+php /app/dm migrate
+
+if [ $? -eq 1 ]; then
+    exit 1
 fi
 
-php dm migrate -V
-chmod +x /app/scripts_sh/*.sh
+chmod +x /app/bin/*.sh
 
-if [ -n "$NGINX_PROXY_MANAGER_DATA_PATH" ]; then
-    /app/scripts_sh/nginx_access_logs.sh &
+if [ -n "$NGINX_ACCESS_LOGS_PATH" ]; then
+    /app/bin/nginx_access_logs.sh &
 fi
 
-if [ -f "$ROOTFS_PATH/proc/meminfo" ]; then
-    /app/scripts_sh/sys_mem.sh &
-fi
-
-php index.php
+php /app/dm run:entrypoint

@@ -10,7 +10,8 @@ use Wyue\Database\{
     MySqlRollback
 };
 use App\Commands\{
-    NginxAccess
+    NginxAccess,
+    Entrypoint
 };
 
 CLI::register([
@@ -18,7 +19,8 @@ CLI::register([
     MySqlMakeModel::class,
     MySqlMigrate::class,
     MySqlRollback::class,
-    NginxAccess::class
+    NginxAccess::class,
+    Entrypoint::class,
 ]);
 
 CLI::listen();

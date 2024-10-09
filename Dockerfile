@@ -17,7 +17,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-COPY app/* ./
+COPY app .
 RUN composer install --no-interaction --no-progress
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
