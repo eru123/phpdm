@@ -22,6 +22,7 @@ class NginxAccess extends AbstractCommand
     public function handle()
     {
         CLI::println("[Nginx Access][" . date('Y-m-d H:i:s') . "] Started");
+        CLI::println("[Nginx Access][" . date('Y-m-d H:i:s') . "] Nginx Access Analytics Only Mode is " . (Venv::get('NGINX_ACCESS_ANALYTICS_ONLY', true) ? 'Enabled' : 'Disabled'));
 
         try {
             Daemon::create(function () {
