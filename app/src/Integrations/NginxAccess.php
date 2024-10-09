@@ -5,6 +5,8 @@ namespace App\Integrations;
 use App\Convert;
 use App\Models\AnalyticsNginxAccessHostCounts;
 use App\Models\AnalyticsNginxAccessHostSize;
+use App\Models\AnalyticsNginxAccessStatusCounts;
+use App\Models\AnalyticsNginxAccessUriCounts;
 use App\Models\NginxAccessLogs;
 use Wyue\Venv;
 
@@ -51,12 +53,22 @@ class NginxAccess extends AbstractIntegration
     public function ingest($data = null)
     {
         if (empty($data)) return;
+
+        // Logging
         if (!Venv::get('NGINX_ACCESS_ANALYTICS_ONLY', true)) {
             (new NginxAccessLogs)->insert($data);
         }
+
+        // Channel Based Analytics
         (new AnalyticsNginxAccessHostCounts)->insertUpdateAnalytics(['unit' => 'hour'] + $data, 'host');
         (new AnalyticsNginxAccessHostCounts)->insertUpdateAnalytics(['unit' => 'day'] + $data, 'host');
         (new AnalyticsNginxAccessHostSize)->insertUpdateAnalytics(['unit' => 'hour'] + $data, 'host', 'size');
         (new AnalyticsNginxAccessHostSize)->insertUpdateAnalytics(['unit' => 'day'] + $data, 'host', 'size');
+
+        // Identifier + Channel Based Analytics
+        (new AnalyticsNginxAccessStatusCounts)->insertUpdateAnalytics(['unit' => 'hour'] + $data, 'host', 'status');
+        (new AnalyticsNginxAccessStatusCounts)->insertUpdateAnalytics(['unit' => 'day'] + $data, 'host', 'status');
+        (new AnalyticsNginxAccessUriCounts)->insertUpdateAnalytics(['unit' => 'hour'] + $data, 'host', 'uri');
+        (new AnalyticsNginxAccessUriCounts)->insertUpdateAnalytics(['unit' => 'day'] + $data, 'host', 'uri');
     }
 }
