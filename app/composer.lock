@@ -89,12 +89,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eru123/wyue.git",
-                "reference": "d82461b3d41e4ebceb58df19cad98a16f9f6e27f"
+                "reference": "edb651eff73d1ab9c5f87a9391b0e74a4a20b1d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eru123/wyue/zipball/d82461b3d41e4ebceb58df19cad98a16f9f6e27f",
-                "reference": "d82461b3d41e4ebceb58df19cad98a16f9f6e27f",
+                "url": "https://api.github.com/repos/eru123/wyue/zipball/edb651eff73d1ab9c5f87a9391b0e74a4a20b1d4",
+                "reference": "edb651eff73d1ab9c5f87a9391b0e74a4a20b1d4",
                 "shasum": ""
             },
             "default-branch": true,
@@ -119,7 +119,7 @@
                 "issues": "https://github.com/eru123/wyue/issues",
                 "source": "https://github.com/eru123/wyue/tree/main"
             },
-            "time": "2024-10-07T23:29:57+00:00"
+            "time": "2024-10-09T05:05:43+00:00"
         }
     ],
     "packages-dev": [],
