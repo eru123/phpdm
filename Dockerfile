@@ -7,10 +7,9 @@ RUN apk update \
     && apk add --update --no-cache \
     curl php81 \
     php81-pdo_mysql \
-    php81-json \
     php81-phar \
     php81-mbstring \
-    php81-iconv
+    php81-curl
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
 
