@@ -3,7 +3,10 @@
 namespace App\Integrations;
 
 use App\Convert;
+use App\Models\AnalyticsNginxAccessHostCounts;
+use App\Models\AnalyticsNginxAccessHostSize;
 use App\Models\NginxAccessLogs;
+use Wyue\Venv;
 
 class NginxAccess extends AbstractIntegration
 {
@@ -48,6 +51,12 @@ class NginxAccess extends AbstractIntegration
     public function ingest($data = null)
     {
         if (empty($data)) return;
-        (new NginxAccessLogs)->insert($data);
+        if (!Venv::get('NGINX_ACCESS_ANALYTICS_ONLY', true)) {
+            (new NginxAccessLogs)->insert($data);
+        }
+        (new AnalyticsNginxAccessHostCounts)->insertUpdateAnalytics(['unit' => 'hour'] + $data, 'host');
+        (new AnalyticsNginxAccessHostCounts)->insertUpdateAnalytics(['unit' => 'day'] + $data, 'host');
+        (new AnalyticsNginxAccessHostSize)->insertUpdateAnalytics(['unit' => 'hour'] + $data, 'host', 'size');
+        (new AnalyticsNginxAccessHostSize)->insertUpdateAnalytics(['unit' => 'day'] + $data, 'host', 'size');
     }
 }
