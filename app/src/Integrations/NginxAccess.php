@@ -27,6 +27,11 @@ class NginxAccess extends AbstractIntegration
                 continue;
             }
 
+            $uri = $matches['request_uri'];
+            if (is_string($uri) && strpos($uri, '?') !== false) {
+                $uri = substr($uri, 0, strpos($uri, '?'));
+            }
+
             return [
                 'message' => $data,
                 'type' => $type,
@@ -37,7 +42,7 @@ class NginxAccess extends AbstractIntegration
                 'method' => $matches['request_method'],
                 'scheme' => $matches['scheme'],
                 'host' => $matches['host'],
-                'uri' => $matches['request_uri'],
+                'uri' => $uri,
                 'ip' => $matches['remote_addr'],
                 'size' => $matches['body_bytes_sent'],
                 'ratio' => $matches['gzip_ratio'],
