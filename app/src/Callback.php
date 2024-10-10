@@ -2,8 +2,6 @@
 
 namespace App;
 
-use Exception;
-
 class Callback
 {
     /**

@@ -9,8 +9,6 @@
         }
     },
     "require": {
-        "eru123/orm": "^2.0",
-        "eru123/venv": "^1.0",
         "eru123/wyue": "dev-main"
     },
     "authors": [
