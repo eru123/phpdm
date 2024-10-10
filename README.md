@@ -33,7 +33,7 @@ Nginx Access Logs Collector is Compatible with Nginx Proxy Manager Container. If
 
 Our extended contab parser is compatible with running rules with seconds (just add another `*`), we also supported [Crontab Guru](https://crontab.guru/).
 
-| Cron Variable | Cron Expression | Description         |
+| Supported Alias | Cron Expression | Description         |
 | ------------- | --------------- | ------------------- |
 | `@yearly`     | `0 0 1 1 *`     | Runs once a year.   |
 | `@year`       | `0 0 1 1 *`     | Runs once a year.   |
