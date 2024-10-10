@@ -8,7 +8,7 @@ use DateTime;
  * Extended Contab Validator
  */
 final class Crontab
-{   
+{
     /**
      * Check if expression matches datetime
      */
@@ -34,8 +34,8 @@ final class Crontab
             '@night' => '0 0 * * *',
             '@hourly' => '0 * * * *',
             '@hour' => '0 * * * *',
-            '@minutely' => '0 * * * * *',
-            '@minute' => '0 * * * * *',
+            '@minutely' => '* * * * *',
+            '@minute' => '* * * * *',
             '@secondly' => '* * * * * *',
             '@second' => '* * * * * *',
         ];
@@ -113,7 +113,7 @@ final class Crontab
                 return false;
             return true;
         }
-        
+
         return false;
     }
 
