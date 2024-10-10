@@ -18,7 +18,7 @@ class NginxAccess extends AbstractIntegration
 
         $rgx = [
             'proxy' => '/^\[(?<time_local>[^\]]+)\] (?<upstream_cache_status>[\d\-]{1,3}) (?<upstream_status>[\d\-]{1,3}) (?<status>[\d\-]{1,3}) - (?<request_method>[A-Z]+|-) (?<scheme>.*) (?<host>.*) "(?<request_uri>.*)" \[Client (?<remote_addr>.*)\] \[Length (?<body_bytes_sent>[\d\.\-]+)\] \[Gzip (?<gzip_ratio>[\d\.\-]+)\] \[Sent-to (?<server>.*)\] "(?<http_user_agent>.*)" "(?<http_referer>.*)"$/',
-            'proxy2' => '/^\[(?<time_local>[^\]]+)\] (?<upstream_status>[\d\-]{1,3}) (?<status>[\d\-]{1,3}) - (?<request_method>[A-Z]+|-) (?<scheme>.*) (?<host>.*) "(?<request_uri>.*)" \[Client (?<remote_addr>.*)\] \[Length (?<body_bytes_sent>[\d\.\-]+)\] \[Gzip (?<gzip_ratio>[\d\.\-]+)\] \[Sent-to (?<server>.*)\] "(?<http_user_agent>.*)" "(?<http_referer>.*)"$/',
+            'proxy_alt' => '/^\[(?<time_local>[^\]]+)\] (?<upstream_status>[\d\-]{1,3}) (?<status>[\d\-]{1,3}) - (?<request_method>[A-Z]+|-) (?<scheme>.*) (?<host>.*) "(?<request_uri>.*)" \[Client (?<remote_addr>.*)\] \[Length (?<body_bytes_sent>[\d\.\-]+)\] \[Gzip (?<gzip_ratio>[\d\.\-]+)\] \[Sent-to (?<server>.*)\] "(?<http_user_agent>.*)" "(?<http_referer>.*)"$/',
             'standard' => '/^\[(?<time_local>[^\]]+)\] (?<status>[\d\-]{1,3}) - (?<request_method>[A-Z]+|-) (?<scheme>.*) (?<host>.*) "(?<request_uri>.*)" \[Client (?<remote_addr>.*)\] \[Length (?<body_bytes_sent>[\d\.\-]+)\] \[Gzip (?<gzip_ratio>[\d\.\-]+)\] "(?<http_user_agent>.*)" "(?<http_referer>.*)"$/',
         ];
 
