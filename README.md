@@ -34,23 +34,23 @@ Nginx Access Logs Collector is Compatible with Nginx Proxy Manager Container. If
 Our extended contab parser is compatible with running rules with seconds (just add another `*`), we also supported [Crontab Guru](https://crontab.guru/).
 
 | Supported Alias | Cron Expression | Description         |
-| ------------- | --------------- | ------------------- |
-| `@yearly`     | `0 0 1 1 *`     | Runs once a year.   |
-| `@year`       | `0 0 1 1 *`     | Runs once a year.   |
-| `@annually`   | `0 0 1 1 *`     | Runs once a year.   |
-| `@annual`     | `0 0 1 1 *`     | Runs once a year.   |
-| `@monthly`    | `0 0 1 * *`     | Runs once a month.  |
-| `@month`      | `0 0 1 * *`     | Runs once a month.  |
-| `@weekly`     | `0 0 * * 0`     | Runs once a week.   |
-| `@week`       | `0 0 * * 0`     | Runs once a week.   |
-| `@daily`      | `0 0 * * *`     | Runs once a day.    |
-| `@day`        | `0 0 * * *`     | Runs once a day.    |
-| `@midnight`   | `0 0 * * *`     | Runs once a day.    |
-| `@nightly`    | `0 0 * * *`     | Runs once a day.    |
-| `@night`      | `0 0 * * *`     | Runs once a day.    |
-| `@hourly`     | `0 * * * *`     | Runs once an hour.  |
-| `@hour`       | `0 * * * *`     | Runs once an hour.  |
-| `@minutely`   | `* * * * *`     | Runs once a minute. |
-| `@minute`     | `* * * * *`     | Runs once a minute. |
-| `@secondly`   | `* * * * * *`   | Runs every second.  |
-| `@second`     | `* * * * * *`   | Runs every second.  |
+| --------------- | --------------- | ------------------- |
+| `@yearly`       | `0 0 1 1 *`     | Runs once a year.   |
+| `@year`         | `0 0 1 1 *`     | Runs once a year.   |
+| `@annually`     | `0 0 1 1 *`     | Runs once a year.   |
+| `@annual`       | `0 0 1 1 *`     | Runs once a year.   |
+| `@monthly`      | `0 0 1 * *`     | Runs once a month.  |
+| `@month`        | `0 0 1 * *`     | Runs once a month.  |
+| `@weekly`       | `0 0 * * 0`     | Runs once a week.   |
+| `@week`         | `0 0 * * 0`     | Runs once a week.   |
+| `@daily`        | `0 0 * * *`     | Runs once a day.    |
+| `@day`          | `0 0 * * *`     | Runs once a day.    |
+| `@midnight`     | `0 0 * * *`     | Runs once a day.    |
+| `@nightly`      | `0 0 * * *`     | Runs once a day.    |
+| `@night`        | `0 0 * * *`     | Runs once a day.    |
+| `@hourly`       | `0 * * * *`     | Runs once an hour.  |
+| `@hour`         | `0 * * * *`     | Runs once an hour.  |
+| `@minutely`     | `* * * * *`     | Runs once a minute. |
+| `@minute`       | `* * * * *`     | Runs once a minute. |
+| `@secondly`     | `* * * * * *`   | Runs every second.  |
+| `@second`       | `* * * * * *`   | Runs every second.  |
